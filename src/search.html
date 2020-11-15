@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%=require('raw-loader!./meta.html')%>
+  <meta charset="UTF-8">
+  <title>search</title>
+  <script>
+<%=require('raw-loader!babel-loader!../node_modules/lib-flexible/flexible.js') %>
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>

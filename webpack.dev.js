@@ -1,6 +1,45 @@
 const path = require('path')
 const webpack = require('webpack')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
+const glob = require('glob')
+
+const setMPA = () => {
+  const entry = {}
+  const htmlWebpackPlugins = []
+  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.js'))
+  entryFiles.forEach((entryFile) => {
+    const match = entryFile.match(/src\/(.*)\/index\.js/)
+    // console.log(pageName)
+    const pageName = match && match[1]
+    entry[pageName] = entryFile
+    htmlWebpackPlugins.push(
+      new HtmlWebpackPlugin({
+        // 模版 指定的html 可以使用ejs的语法
+        template: path.join(__dirname, `src/${pageName}/index.html`),
+        filename: `${pageName}.html`, // 输出文件名称
+        chunks: [pageName], // 使用哪些chunk
+        inject: true, // 打包之后chunk 的css js 注入指定的模版
+        minify: {
+          html5: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false,
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: false,
+        },
+      })
+    )
+  })
+
+  return {
+    entry,
+    htmlWebpackPlugins,
+  }
+}
+
+const { entry, htmlWebpackPlugins } = setMPA()
 
 module.exports = {
   // // 默认fasle
@@ -15,10 +54,7 @@ module.exports = {
   //   //
 
   // },
-  entry: {
-    app: './src/index.js',
-    search: './src/search.jsx',
-  },
+  entry,
   output: {
     filename: '[name]_build.js',
     path: path.join(__dirname, 'dist'),
@@ -61,9 +97,29 @@ module.exports = {
       },
     ],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new CleanWebpackPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(),
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: [
+    //     {
+    //       module: 'react',
+    //       entry:
+    //         'https://cdn.bootcdn.net/ajax/libs/react/17.0.1/umd/react.production.min.js',
+    //       global: 'React',
+    //     },
+    //     {
+    //       module: 'react-dom',
+    //       entry:
+    //         'https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.1/umd/react-dom.production.min.js',
+    //       global: 'ReactDOM',
+    //     },
+    //   ],
+    // }),
+  ].concat(htmlWebpackPlugins),
   devServer: {
     contentBase: './dist', // 服务目录
     hot: true, //开启热更新
   },
+  devtool: 'cheap-source-map',
 }

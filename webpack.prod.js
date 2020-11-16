@@ -5,8 +5,8 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const glob = require('glob')
+// const WebpackDeepScopePlugin = require('webpack-deep-scope-plugin').default
 // const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
-
 const setMPA = () => {
   const entry = {}
   const htmlWebpackPlugins = []
@@ -61,8 +61,8 @@ module.exports = {
     filename: 'js/[name]_[chunkhash:8].js',
     path: path.join(__dirname, 'dist'),
   },
+  // mode: 'production',
   mode: 'production',
-  // mode: 'none',
   module: {
     rules: [
       {
@@ -114,6 +114,7 @@ module.exports = {
     }),
 
     new CleanWebpackPlugin(),
+    // new WebpackDeepScopePlugin(),
 
     // new HtmlWebpackExternalsPlugin({
     //   externals: [
@@ -132,7 +133,7 @@ module.exports = {
     //   ],
     // }),
   ].concat(htmlWebpackPlugins),
-  devtool: 'eval',
+  // devtool: 'eval',
   optimization: {
     splitChunks: {
       minSize: 0,

@@ -1,15 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { funcA } from './tree-shaking'
+import { Apple } from './componetns'
 import { common } from '../../common/index'
 import yb from './images/yb.jpeg'
 import small from './images/small.png'
+
 import './search.less'
+
 class Search extends React.Component {
   state = {
     count: 0,
     common: common(),
   }
   render() {
+    const appleModel = new Apple({
+      model: 'IphoneX',
+    }).getModel()
+
+    console.log(appleModel)
     return (
       <div className="box">
         <div className="span">span test</div>

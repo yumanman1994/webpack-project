@@ -322,3 +322,24 @@ new HtmlWebpackPlugin({
 #### 资源内联
 
 js 内联 使用`row-loader`，css 使用`style.loader`或者`html-inline-css-webpack-plugin`
+
+#### `scope hoisting`
+
+`webpack` 构建后的代码存在大量的闭包代码
+`mode` 设置为 `production` 自动开启 `scope hoisting`
+没有开启 scope hoisting 引入的模块会被大量的闭包 包裹起来 导致 体积增大 （模块越多越明显），运行的代码时创建的函数作用域越多 内存开销越大
+引入的模块 会被 \_\_weboack_require 包裹成一个匿名函数，按顺序放在一个数组里面，通过\_util_WEBPACK_IMPORTED_MODULE_1\_\_(moduleId)启动程序
+scope hoisting 解决了上面的问题
+原理：将所有的模块的代码 按顺序放在一个函数作用域里面，然后适当的重命名一些变量防止变量冲突
+对比：通过 scope hoisting 可以减少函数声明代码 和内存开销
+
+#### 代码分割和动态 import
+
+对于大的 web 应用来说，将所有的代码都放在一个文件中加载很慢，某些特殊的代码是在某些特殊的时候才会被用到，webpack 有一个功能就是将你的代码库分割成 chunks，当代码运行到需要他们的时候再进行加载
+适用的场景：
+
+- 抽离相同的代码到一个共享块
+- 脚本懒加载 似的初始下载的代码更小
+  懒加载 js 脚本的方式
+- commonJS:require.ensure
+- es6:动态 import (目前还没有原生支持 需要 babel 转换 `babel/plugin-syntax-dynamic-import` 插件)

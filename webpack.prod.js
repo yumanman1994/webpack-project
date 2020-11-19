@@ -1,10 +1,10 @@
-const path = require('path')
+const path = require('path');
 // const webpack = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { options } = require('less')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { options } = require('less');
 module.exports = {
   // // 默认fasle
   // watch: true,
@@ -114,4 +114,4 @@ module.exports = {
   //   contentBase: './dist', // 服务目录
   //   hot: true, //开启热更新
   // },
-}
+};

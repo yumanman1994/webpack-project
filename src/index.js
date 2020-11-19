@@ -1,2 +1,2 @@
-import { hello } from './hello'
-document.write(hello())
+import { hello } from './hello';
+document.write(hello());

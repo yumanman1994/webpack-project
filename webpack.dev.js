@@ -1,6 +1,6 @@
-const path = require('path')
-const webpack = require('webpack')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   // // 默认fasle
@@ -66,4 +66,4 @@ module.exports = {
     contentBase: './dist', // 服务目录
     hot: true, //开启热更新
   },
-}
+};

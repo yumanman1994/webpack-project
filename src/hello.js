@@ -1,3 +1,3 @@
 export function hello() {
-  return 'hello webpack'
+  return 'hello webpack';
 }

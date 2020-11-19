@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import yb from './images/yb.jpeg'
-import small from './images/small.png'
-import './search.less'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import small from './images/small.png';
+import yb from './images/yb.jpeg';
+import './search.less';
 class Search extends React.Component {
   state = {
     count: 0,
-  }
+  };
   render() {
     return (
       <div className="box">
@@ -16,7 +16,7 @@ class Search extends React.Component {
           onClick={() => {
             this.setState({
               count: this.state.count + 1,
-            })
+            });
           }}
         >
           click{this.state.count}
@@ -28,8 +28,8 @@ class Search extends React.Component {
           <img src={yb} alt="yb" />
         </div>
       </div>
-    )
+    );
   }
 }
 
-ReactDOM.render(<Search />, document.getElementById('root'))
+ReactDOM.render(<Search />, document.getElementById('root'));

@@ -18,7 +18,7 @@ npm i webpack webpack-cli --save-dev
 ```javascript
 module.exports = {
   entry: './src/index.js',
-}
+};
 ```
 
 **多入口配置**
@@ -30,7 +30,7 @@ module.exports = {
     app: './src/app.js',
     index: './src/index.js',
   },
-}
+};
 ```
 
 #### output
@@ -46,7 +46,7 @@ module.export = {
     filename: 'bundle.js',
     path: __dirname + '/dist',
   },
-}
+};
 ```
 
 **多入口配置**
@@ -124,7 +124,7 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
-}
+};
 ```
 
 #### mode 环境配置
@@ -135,7 +135,7 @@ module.exports = {
 ```js
 module.exports = {
   mode: 'production',
-}
+};
 ```
 
 或
@@ -246,7 +246,7 @@ webpack 开启监听模式的两种方式
 
 ```javascript
 output: {
-  filename: '[name][chunkhash:8].js'
+  filename: '[name][chunkhash:8].js';
 }
 ```
 
@@ -258,7 +258,7 @@ plugins: [
   new MiniCssExtractPlugin({
     filename: '[name][contenthash:8].css',
   }),
-]
+];
 ```
 
 **图片等资源指纹设置**
@@ -276,7 +276,7 @@ module: {
         },
       },
     },
-  ]
+  ];
 }
 ```
 

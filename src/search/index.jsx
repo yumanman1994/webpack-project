@@ -1,34 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { common } from '../../common/index';
-import { Apple } from './componetns';
 import small from './images/small.png';
 import yb from './images/yb.jpeg';
 import './search.less';
 
 class Search extends React.Component {
-  state = {
-    count: 0,
-    common: common(),
-  };
-  render() {
-    const appleModel = new Apple({
-      model: 'IphoneX',
-    }).getModel();
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
 
-    console.log(appleModel);
+  render() {
+    const { count, common } = this.state;
     return (
       <div className="box">
         <div className="span">span test</div>
 
         <button
+          type="button"
           onClick={() => {
-            this.setState({
-              count: this.state.count + 1,
-            });
+            this.setState(prevState => ({ count: prevState + 1 }));
           }}
         >
-          click{this.state.count}
+          click
+          {count}
         </button>
         <div>
           <img src={small} alt="small" />
@@ -36,7 +33,7 @@ class Search extends React.Component {
         <div>
           <img src={yb} alt="yb" />
         </div>
-        <p>{this.state.common}</p>
+        <p>{common}</p>
       </div>
     );
   }

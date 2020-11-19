@@ -1,3 +1,3 @@
 export function common() {
-  return 'common test'
+  return 'common test';
 }

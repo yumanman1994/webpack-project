@@ -1,11 +1,23 @@
 .box {
+  display: flex;
+  width: 100px;
   font-size: 24px;
   border: 2px solid red;
-  display: flex;
   .span {
-    color: red;
+    position: relative;
+    flex: 1;
+    width: 100%;
   }
   img {
     max-width: 200px;
   }
+}
+
+.div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
 }

@@ -1,24 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { funcA } from './tree-shaking'
-import { Apple } from './componetns'
-import { common } from '../../common/index'
-import yb from './images/yb.jpeg'
-import small from './images/small.png'
-
-import './search.less'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { common } from '../../common/index';
+import { Apple } from './componetns';
+import small from './images/small.png';
+import yb from './images/yb.jpeg';
+import './search.less';
 
 class Search extends React.Component {
   state = {
     count: 0,
     common: common(),
-  }
+  };
   render() {
     const appleModel = new Apple({
       model: 'IphoneX',
-    }).getModel()
+    }).getModel();
 
-    console.log(appleModel)
+    console.log(appleModel);
     return (
       <div className="box">
         <div className="span">span test</div>
@@ -27,7 +25,7 @@ class Search extends React.Component {
           onClick={() => {
             this.setState({
               count: this.state.count + 1,
-            })
+            });
           }}
         >
           click{this.state.count}
@@ -40,8 +38,8 @@ class Search extends React.Component {
         </div>
         <p>{this.state.common}</p>
       </div>
-    )
+    );
   }
 }
 
-ReactDOM.render(<Search />, document.getElementById('root'))
+ReactDOM.render(<Search />, document.getElementById('root'));

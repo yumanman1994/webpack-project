@@ -1,3 +1,3 @@
 export default function utilFunc() {
-  console.log('utilFunc')
+  console.log('utilFunc');
 }

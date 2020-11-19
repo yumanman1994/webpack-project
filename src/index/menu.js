@@ -1,17 +1,17 @@
 export default class Menu {
   constructor() {
-    this.display = 'none'
+    this.display = 'none';
   }
 
   show() {
-    this.display = 'block'
+    this.display = 'block';
   }
 
   hide() {
-    this.display = 'none'
+    this.display = 'none';
   }
 
   isShow() {
-    return this.display === 'block'
+    return this.display === 'block';
   }
 }

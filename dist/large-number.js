@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["largeNumber"] = factory();
+	else
+		root["largeNumber"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -86,39 +96,46 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _hello__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+function add(a, b) {
+  let i = a.length - 1
+  let j = b.length - 1
+  let carry = 0
+  let ret = ''
+  while (i >= 0 || j >= 0) {
+    let x = 0
+    let y = 0
+    let sum
+    if (i >= 0) {
+      x = a[i] - '0'
+      i--
+    }
 
- // const a = { name: '4324' };
+    if (j >= 0) {
+      y = b[j] - '0'
+      j--
+    }
 
-Object(_util__WEBPACK_IMPORTED_MODULE_1__["default"])();
-Object(_hello__WEBPACK_IMPORTED_MODULE_0__["default"])(); // document.write(hello())
+    sum = x + y + carry
+    // console.log(sum)
+    if (sum >= 10) {
+      sum = sum - 10
+      carry = 1
+    } else {
+      carry = 0
+    }
+    ret = sum.toString() + ret
+  }
+  if (carry) {
+    ret = carry + ret
+  }
 
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return hello; });
-function hello() {
-  return 'hello webpack';
+  // console.log(ret)
+  return ret
 }
 
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return utilFunc; });
-function utilFunc() {
-  console.log('utilFunc');
-}
 
 /***/ })
-/******/ ]);
+/******/ ])["default"];
+});

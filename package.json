@@ -70,6 +70,7 @@
     "lib-flexible": "^0.3.2",
     "lodash-es": "^4.17.15",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "yxm-large-number": "^1.1.0"
   }
 }

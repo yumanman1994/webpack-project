@@ -1,4 +1,4 @@
-function add(a, b) {
+export function add(a, b) {
   let i = a.length - 1
   let j = b.length - 1
   let carry = 0

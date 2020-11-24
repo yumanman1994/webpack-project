@@ -343,3 +343,22 @@ scope hoisting 解决了上面的问题
   懒加载 js 脚本的方式
 - commonJS:require.ensure
 - es6:动态 import (目前还没有原生支持 需要 babel 转换 `babel/plugin-syntax-dynamic-import` 插件)
+
+#### 优化构建日志
+
+stats
+使用 friendly-errors-webpack-plugin,stats 设置成 error-only
+
+#### 构建中断和异常处理
+
+在 CI/CD 的 pipeline 或者发布系统需要知道当前构建状态
+
+在程序里面是每次构建完成之后输入 echo \$? 获取错误码
+Nodejs 中的 process.exit 规范
+
+- 0 表示成功，回调函数中，err 为 null
+- 非 0 表示执行失败 回调函数中 err 部位 null ，err.code 就是传递给 exit 的数字
+
+**如何主动捕获并处理构建错误**
+compiler 在每次构建结束后会出 done 这个 hook
+process.exit 主动处理构建报错

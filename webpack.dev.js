@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 优化构建日志
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 // const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 const glob = require('glob');
 
@@ -100,6 +102,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin(),
     // new HtmlWebpackExternalsPlugin({
     //   externals: [
     //     {
@@ -120,6 +123,7 @@ module.exports = {
   devServer: {
     contentBase: './dist', // 服务目录
     hot: true, // 开启热更新
+    stats: 'errors-only',
   },
   devtool: 'cheap-source-map',
 };

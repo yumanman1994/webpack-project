@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// 优化构建日志
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const glob = require('glob');
 const cssProcessor = require('cssnano');
 // const WebpackDeepScopePlugin = require('webpack-deep-scope-plugin').default
@@ -115,6 +117,21 @@ module.exports = {
     }),
 
     new CleanWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin(),
+    // 主动捕获构建异常和错误日志
+    function getError() {
+      this.hooks.done.tap('done', stats => {
+        // 可以在这里主动上报构建日志 ci/cd流程 构建系统等
+        if (
+          stats.compilation.errors &&
+          stats.compilation.errors.length &&
+          process.argv.indexOf('--watch') === -1
+        ) {
+          console.log('build error');
+          process.exit(1);
+        }
+      });
+    },
     // mode 设置为none 手动开启 scope hoisting
     // new webpack.optimize.ModuleConcatenationPlugin(),
     // new WebpackDeepScopePlugin(),
@@ -161,4 +178,5 @@ module.exports = {
   //   contentBase: './dist', // 服务目录
   //   hot: true, //开启热更新
   // },
+  stats: 'errors-only',
 };
